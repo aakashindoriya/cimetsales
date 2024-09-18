@@ -7,10 +7,10 @@ export const Qustions=[
         id:"1"
     },
     {
-        qustion:"what is the Capital of Bihar",
-        options:["churu","bikaner","jaipur","kota"],
+        qustion:"what is the Capital of west bangal",
+        options:["churu","jaipur","kota","kolkata"],
         image:"",
-        ans:"jaipur",
+        ans:"kolkata",
         id:2
     },
     {

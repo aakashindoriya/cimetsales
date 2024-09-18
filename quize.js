@@ -8,10 +8,10 @@ let score=0
 function showQusition(){
     ShowScore()
     if(currentIndex>=Qustions.length){
+        clearTimeout(timer)
         alert("test over")
         return
     }
-    enableButtons()
   
     let qusitonPlace=document.getElementById("qustion")
     qusitonPlace.innerText=Qustions[currentIndex].qustion
@@ -56,11 +56,7 @@ function disableButtons(){
         document.getElementById(`opt${i}`).disabled=true
     }
 }
-function enableButtons(){
-    for(let i=1;i<=4;i++){
-        document.getElementById(`opt${i}`).disabled=false
-    }
-}
+
 function ShowScore(){
     document.getElementById("result").innerText=score
 }
