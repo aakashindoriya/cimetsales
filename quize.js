@@ -1,65 +1,67 @@
 import {Qustions} from "./Qustions.js"
-let startButton=document.createElement("button")
-startButton.innerText="Start test"
-startButton.addEventListener("click",()=>{
-    console.log("test is started")
-    startTest()
-    startButton.remove()
-})
-
-document.body.appendChild(startButton)
 
 
+let currentIndex=0
+let timer=null
+let score=0
 
-function startTest(){
-    let index=1
-    ShowQustion(Qustions[0])
-    let id=setInterval(()=>{
-        if(index>=Qustions.length-1){
-            clearInterval(id)
-        }
-        ShowQustion(Qustions[index])
-        index++
-    },5000)
-    
-        
-}
-
-function ShowQustion(que){
-  if(!que)return
-   let Qustion =document.getElementById("qustion")
-   Qustion.innerText=que.qustion
-
-   for(let i=1;i<=4;i++){
-    let Opt1=document.getElementById(`opt${i}`)
-   Opt1.disabled=false
-   Opt1.addEventListener("click",()=>{
-       CheckResult(que,que.options[i-1])
-   })
-   Opt1.innerText=que.options[i-1]
-   }
-  
-
-
-}
-let result=0
-let rightAns={}
-document.getElementById("result").innerText=result
-function CheckResult(que,ans){
-    if(rightAns[que.id]){
+function showQusition(){
+    ShowScore()
+    if(currentIndex>=Qustions.length){
+        alert("test over")
         return
     }
-    rightAns[que.id]=1
+    enableButtons()
+  
+    let qusitonPlace=document.getElementById("qustion")
+    qusitonPlace.innerText=Qustions[currentIndex].qustion
+    let currentQustion=Qustions[currentIndex]
 
-    if(que.ans===ans){
-        result++
-        document.getElementById("result").innerText=result
-    }
-    
-    for(let i=1;i<=4;i++){
+    currentQustion.options.forEach((_, index) => {
+        let optionPlace = document.getElementById(`opt${index + 1}`);
+        optionPlace.innerText = ""; // Clear previous text
+        optionPlace.removeEventListener("click", handleAns); // Remove any existing listeners
+    });
 
-        document.getElementById(`opt${i}`).disabled = true
-    }
-    
+    currentQustion.options.forEach((opt,index)=>{
+        let optionPlace = document.getElementById(`opt${index + 1}`);
+        optionPlace.innerText = opt;
+        optionPlace.disabled = false; // Ensure buttons are enabled
+        optionPlace.onclick = () => handleAns(opt)
+    })
+    timer=setTimeout(()=>{
+        currentIndex++
+        showQusition()
+    },5000)
+
 }
 
+function handleAns(ans){
+    disableButtons()
+    console.log(ans,"handleans")
+    if(ans==Qustions[currentIndex].ans){
+        score++
+    }
+    clearTimeout(timer)
+    
+  setTimeout(()=>{
+        currentIndex++
+        showQusition()
+    },1000)
+}
+
+function disableButtons(){
+    console.log("ans")
+    for(let i=1;i<=4;i++){
+        document.getElementById(`opt${i}`).disabled=true
+    }
+}
+function enableButtons(){
+    for(let i=1;i<=4;i++){
+        document.getElementById(`opt${i}`).disabled=false
+    }
+}
+function ShowScore(){
+    document.getElementById("result").innerText=score
+}
+showQusition()

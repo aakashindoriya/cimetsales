@@ -14,10 +14,24 @@ export const Qustions=[
         id:2
     },
     {
-        qustion:"what is the Capital of Hariyana",
-        options:["churu","bikaner","jaipur","kota"],
+        qustion:"what is the Capital of panjab",
+        options:["churu","chandigarh","jaipur","kota"],
         image:"",
-        ans:"jaipur",
+        ans:"chandigarh",
+        id:3
+    },
+    {
+        qustion:"what is the Capital of bihar",
+        options:["churu","patna","jaipur","kota"],
+        image:"",
+        ans:"patna",
+        id:3
+    },
+    {
+        qustion:"what is the Capital of gujrat",
+        options:["Ahamdabad","bikaner","jaipur","kota"],
+        image:"",
+        ans:"Ahamdabad",
         id:3
     }
 ]
