@@ -11,19 +11,20 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #fafafa;
+    background-color: rgb(160, 241, 241);
 }
 
 #outerBox {
+    min-width: 40%;
     text-align: center;
     padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: #fff;
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 24px;
     color: #333;
     margin-bottom: 15px;
 }
@@ -33,12 +34,16 @@ button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
+    font-size: 18px;
     border: 1px solid #ccc;
-    border-radius: 3px;
-    
+    border-radius: 20px;
+    font-weight: 200;
    
     font-size: 16px;
     
+}
+button:disabled{
+    background: rgb(145, 144, 144);
 }
 
 
