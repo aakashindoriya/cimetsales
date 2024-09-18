@@ -5,7 +5,8 @@ import {Qustions} from "./Qustions.js"
 let currentIndex=0
 let timer=null
 let score=0
-
+let remainingTime=5
+let counter=null
 function shuffle(array) {
     let Index = array.length;
   
@@ -18,19 +19,32 @@ function shuffle(array) {
   }
 shuffle(Qustions)
 
-
+function startTimmer(){
+    let timerPlace=document.getElementById("timer")
+    timerPlace.innerText=`remaining time ${remainingTime} seconds`
+    counter=setInterval(()=>{
+        remainingTime--
+        if(remainingTime<=0){
+            clearInterval(counter)
+            remainingTime=5
+        }
+        timerPlace.innerText=`remaining time ${remainingTime} seconds`
+    },1000)
+}
 
 function showQusition(){
     ShowScore()
     if(currentIndex>=Qustions.length){
         clearTimeout(timer)
+        clearInterval(counter)
+        remainingTime=0
         alert("test over")
         return
     }
   
     let qusitonPlace=document.getElementById("qustion")
-    qusitonPlace.innerText=Qustions[currentIndex].qustion
     let currentQustion=Qustions[currentIndex]
+    qusitonPlace.innerText=`Q: ${currentQustion.qustion}`
 
     currentQustion.options.forEach((_, index) => {
         let optionPlace = document.getElementById(`opt${index + 1}`);
@@ -48,17 +62,18 @@ function showQusition(){
         currentIndex++
         showQusition()
     },5000)
+    startTimmer()
 
 }
 
 function handleAns(ans){
     disableButtons()
-    console.log(ans,"handleans")
     if(ans==Qustions[currentIndex].ans){
         score++
     }
     clearTimeout(timer)
-    
+    clearInterval(counter)
+    remainingTime=5
   setTimeout(()=>{
         currentIndex++
         showQusition()
@@ -66,13 +81,12 @@ function handleAns(ans){
 }
 
 function disableButtons(){
-    console.log("ans")
     for(let i=1;i<=4;i++){
         document.getElementById(`opt${i}`).disabled=true
     }
 }
 
 function ShowScore(){
-    document.getElementById("result").innerText=score
+    document.getElementById("result").innerText=`your score :${score}`
 }
 showQusition()
