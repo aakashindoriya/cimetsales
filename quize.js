@@ -7,6 +7,7 @@ let timer=null
 let score=0
 let remainingTime=5
 let counter=null
+
 function shuffle(array) {
     let Index = array.length;
   
@@ -17,6 +18,7 @@ function shuffle(array) {
         array[randomIndex], array[Index]];
     }
   }
+
 shuffle(Qustions)
 
 function startTimmer(){
@@ -36,8 +38,7 @@ function showQusition(){
     ShowScore()
     if(currentIndex>=Qustions.length){
         clearTimeout(timer)
-        clearInterval(counter)
-        remainingTime=0
+        stopCounter()
         alert("test over")
         return
     }
@@ -88,5 +89,13 @@ function disableButtons(){
 
 function ShowScore(){
     document.getElementById("result").innerText=`your score :${score}`
+}
+
+function stopCounter(){
+    remainingTime=0
+    let timerPlace=document.getElementById("timer")
+    timerPlace.innerText=`remaining time ${remainingTime} seconds`
+    clearInterval(counter)
+
 }
 showQusition()
