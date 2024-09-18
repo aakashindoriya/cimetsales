@@ -19,14 +19,14 @@ function showQusition(){
 
     currentQustion.options.forEach((_, index) => {
         let optionPlace = document.getElementById(`opt${index + 1}`);
-        optionPlace.innerText = ""; // Clear previous text
-        optionPlace.removeEventListener("click", handleAns); // Remove any existing listeners
+        optionPlace.innerText = ""; 
+        optionPlace.removeEventListener("click", handleAns); 
     });
 
     currentQustion.options.forEach((opt,index)=>{
         let optionPlace = document.getElementById(`opt${index + 1}`);
         optionPlace.innerText = opt;
-        optionPlace.disabled = false; // Ensure buttons are enabled
+        optionPlace.disabled = false; 
         optionPlace.onclick = () => handleAns(opt)
     })
     timer=setTimeout(()=>{
