@@ -17,6 +17,7 @@ function shuffle(array) {
       [array[Index], array[randomIndex]] = [
         array[randomIndex], array[Index]];
     }
+    return array
   }
 
 shuffle(Qustions)
@@ -37,16 +38,19 @@ function startTimmer(){
 function showQusition(){
     ShowScore()
     if(currentIndex>=Qustions.length){
+        console.log(counter,"in show")
         clearTimeout(timer)
         stopCounter()
+        // clearInterval(counter)
         alert("test over")
-        return
+        return;
     }
   
     let qusitonPlace=document.getElementById("qustion")
     let currentQustion=Qustions[currentIndex]
-    qusitonPlace.innerText=`Q: ${currentQustion.qustion}`
-
+    currentQustion.options=shuffle(currentQustion.options)
+    qusitonPlace.innerText=`Q ${currentIndex+1} : ${currentQustion.qustion}`
+    
     currentQustion.options.forEach((_, index) => {
         let optionPlace = document.getElementById(`opt${index + 1}`);
         optionPlace.innerText = ""; 
@@ -92,9 +96,10 @@ function ShowScore(){
 }
 
 function stopCounter(){
+    console.log(counter)
     remainingTime=0
-    let timerPlace=document.getElementById("timer")
-    timerPlace.innerText=`remaining time ${remainingTime} seconds`
+    // let timerPlace=document.getElementById("timer")
+    // timerPlace.innerText=`remaining time ${remainingTime} seconds`
     clearInterval(counter)
 
 }

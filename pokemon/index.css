@@ -1,19 +1,66 @@
+*{
+  margin: 0%;
+  box-sizing: border-box;
+}
 #container{
+    max-width: 90%;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    margin: 10px;
+    gap:5%;
     padding: 2%;
 }
+#loadmore{
+  position: fixed;
+  bottom: 5%;
+  z-index: 1000;
+  width: 300px;
+  background-color: white;
+  font-size: larger;
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 20px;
+
+ 
+}
+#box{
+  display: flex;
+  width: 100%;
+  padding: 1%;
+  justify-content: center;
+  gap:10%;
+  height: 90px;
+  position: sticky;
+  top:0%;
+  z-index: 100;
+  background-color: white;
+  
+}
+#box>select {
+ height: 40px;
+ width: 200px;
+  text-align: center;
+}
+#box>input {
+  height: 40px;
+  width: 200px;
+   text-align: center;
+ }
 .flip-card {
+   max-width: 80%;
     background-color: transparent;
     width: 300px;
-    height: 200px;
+    height: 400px;
     border: 1px solid #f1f1f1;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    padding:1% 2% ;
+    border-radius: 10%;
+   /* Remove this if you don't want the 3D effect */
   }
   .flip-img{
     height: 100%;
-    width: 100%;
+    max-width: 80%;
+    border: 1px solid transparent;
+    border-radius: 20%;
   }
   /* This container is needed to position the front and back side */
   .flip-card-inner {
@@ -23,6 +70,7 @@
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    
   }
   
   /* Do an horizontal flip when you move the mouse over the flip box container */
