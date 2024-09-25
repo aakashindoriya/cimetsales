@@ -1,16 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
-import { GetPopularMovies } from '../actions/appAction'
+import { GetPopularMovies, getTopRatedMovies, getTrandingMovies } from '../actions/appAction'
+import { movieContext } from '../context/MovieContext'
+import { MovieCard }from '../components/MovieCard'
+import {MovieGrid }from '../components/MovieGrid'
+import { PopularMovies } from '../components/PopularMovies'
 
 function App() {
-
+  const {state,dispatch}=useContext(movieContext)
   useEffect(()=>{
-    GetPopularMovies()
+    
+    getTrandingMovies(dispatch,"week")
+    getTopRatedMovies(dispatch)
   },[])
-
+  console.log(state)
   return (
     <div>
-      this is home
+      <PopularMovies/>
       
     </div>
   )
