@@ -7,7 +7,8 @@ const initalState={
     popular:{data:[],isLoading:false},
     topRated:{data:[],isLoading:false},
     allMovie:{data:[],isLoading:false},
-    singleMovie:{data:{},isLoading:false}
+    singleMovie:{data:{},isLoading:false},
+
 }
 
 const movieReducer=(state,{type,payload})=>{
@@ -51,6 +52,9 @@ const movieReducer=(state,{type,payload})=>{
         case "SINGLE_MOVIE":return{
             ...state,
             singleMovie:{data:payload,isLoading:false}
+        }
+        case "SEARCHED_MOVIE":return{
+            
         }
         default:return state
     }

@@ -10,7 +10,7 @@ export const NavBar = ({pathname}) => {
       alignItems="center"
       justifyContent="space-around"
       borderBottom={"2px solid teal"}
-      h="90"
+      h="70"
       bg="teal.100"
       position="sticky"
       top="0%"
@@ -27,7 +27,7 @@ export const NavBar = ({pathname}) => {
       >
         <Input bg="teal.50" />
       </Box>
-      <Box w="13%" display="flex" justifyContent="space-between">
+      <Box w="17%" display="flex" justifyContent="space-between">
         <Button colorScheme={pathname=="/movie"?"pink":'teal'} variant='outline' >
         <NavLink  to="/movie" >Movies</NavLink>
         </Button>

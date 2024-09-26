@@ -7,9 +7,9 @@ import {
     CircularProgress,
     CircularProgressLabel,
   } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+  import { useNavigate } from 'react-router-dom';
   
-  export const MovieCard = ({id, name, poster_path, release_date, vote_average,first_air_date }) => {
+  export const MovieCard = ({id, name,title, poster_path, release_date, vote_average,first_air_date }) => {
     const navigate=useNavigate()
     return (
       <Box
@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
         _hover={{cursor:"pointer"}}
         onClick={()=>navigate(`/movie/${id}-${first_air_date?"tv":"movie"}`)}
       >
-        <Image src={poster_path} alt={`${name} poster`} minW={"100%"} h="300px"/>
+        <Image src={poster_path} alt={`${name} poster`} minW={"100%"} h="300"/>
   
         <Box p="4">
           <Flex align="center" justify="space-between" mb="2">
@@ -37,18 +37,10 @@ import { useNavigate } from 'react-router-dom';
                 <CircularProgressLabel>{vote_average}</CircularProgressLabel>
               </CircularProgress>
             </Box>
-  
-            <Flex gap="2" wrap="wrap">
-              {/* {genres.map((genre, idx) => (
-                <Badge key={idx} borderRadius="full" px="2" colorScheme="red">
-                  {genre}
-                </Badge>
-              ))} */}
-            </Flex>
           </Flex>
   
           <Text mt="2" fontWeight="bold" fontSize="lg" isTruncated>
-            {name}
+            {name||title}
           </Text>
   
           <Text fontSize="sm" color="gray.400">

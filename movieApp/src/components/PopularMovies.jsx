@@ -15,7 +15,6 @@ export const PopularMovies = () => {
 
   return (
     <Box w="100%">
-      {/* Heading and Toggle Buttons */}
       <Flex m="auto" justifyContent="space-between" maxW="85%" mb="5" mt="5">
         <Heading>What's Popular</Heading>
         <ToggleButtons selected={selected} setSelected={setSelected} first={"movie"} second={"tv"}/>

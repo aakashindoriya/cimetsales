@@ -58,6 +58,7 @@ export const getTrandingMovies = async (dispatch,span="day") => {
    }
  };
  export const getAllMovies = async (dispatch,type="movie",page=1,sort="",isInfinity) => {
+  console.log(sort,"infunc")
   try {
      let url = `${baseUrl}/discover/${type}?language=en-US&page=${page}&sort_by=${sort}&api_key=${apiKey}`;
     let { data } = await axios.get(url);
@@ -84,4 +85,17 @@ try {
 } catch (error) {
   console.log(error, "err");
 }
+}
+
+export const getSearchedMovies=async(dispatch,term="")=>{
+  try {
+    // https://api.themoviedb.org/3/search/multi?query=bone&page=1
+    
+    let url=`${baseUrl}/search/multi?query=${term}&page=1`
+    let {data}=await axios.get(url)
+    console.log(data)
+    // return dispatch({type:"SEARCHED_MOVIES",payload:data.results})
+  } catch (error) {
+    console.log(error, "err");
+  }
 }

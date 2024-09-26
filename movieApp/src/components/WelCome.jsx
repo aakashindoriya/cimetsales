@@ -1,48 +1,53 @@
-'use client'
+import { Box, Heading, Input, Button, Text, VStack } from "@chakra-ui/react";
 
-import { Stack, Flex, Button, Text, VStack, useBreakpointValue } from '@chakra-ui/react'
-
-export default function WelCome() {
+const Welcome = () => {
   return (
-    <Flex
-      w={'full'}
-      h={'100vh'}
-      backgroundImage={
-        'url(https://image.tmdb.org/t/p/original/gOcqzHwkApTWD9i5ChDK5wO5pM5.jpg)'
-      }
-      backgroundSize={'cover'}
-      backgroundPosition={'top center'}>
-      <VStack
-        w={'full'}
-        justify={'center'}
-        px={useBreakpointValue({ base: 4, md: 8 })}
-        bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-        <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
-          <Text
-            color={'white'}
-            fontWeight={700}
-            lineHeight={1.2}
-            fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
-          </Text>
-          <Stack direction={'row'}>
-            <Button
-              bg={'blue.400'}
-              rounded={'full'}
-              color={'white'}
-              _hover={{ bg: 'blue.500' }}>
-              Show me more
-            </Button>
-            <Button
-              bg={'whiteAlpha.300'}
-              rounded={'full'}
-              color={'white'}
-              _hover={{ bg: 'whiteAlpha.500' }}>
-              Show me more
-            </Button>
-          </Stack>
-        </Stack>
+    <Box
+      bgImage="url('https://image.tmdb.org/t/p/original/wWba3TaojhK7NdycRhoQpsG0FaH.jpg')"
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      bgSize="cover"
+      h="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      position="relative"
+    >
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        bg="rgba(0, 0, 0, 0.6)"
+      ></Box>
+      <VStack spacing={6} zIndex="1" textAlign="center" color="white">
+        <Heading as="h1" fontSize="5xl" fontWeight="bold">
+          Welcome.
+        </Heading>
+        <Text fontSize="lg">
+          Millions of movies, TV shows, and people to discover. Explore now.
+        </Text>
+        <Box display="flex" maxW="600px" w="100%">
+          <Input
+            placeholder="Search for a movie or TV show..."
+            size="lg"
+            borderRightRadius="0"
+            bg="white"
+            color="black"
+          />
+          <Button
+            size="lg"
+            borderLeftRadius="0"
+            bgGradient="linear(to-r, orange.400, pink.400)"
+            _hover={{ bgGradient: "linear(to-r, orange.500, pink.500)" }}
+          >
+            Search
+          </Button>
+        </Box>
       </VStack>
-    </Flex>
-  )
-}
+    </Box>
+  );
+};
+
+export default Welcome;
