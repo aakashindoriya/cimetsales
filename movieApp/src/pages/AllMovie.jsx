@@ -1,0 +1,42 @@
+import { Box } from '@chakra-ui/react'
+import React, {  useContext, useEffect, useState } from 'react'
+import { MovieGrid } from '../components/MovieGrid'
+import { getAllMovies } from '../actions/appAction'
+import { movieContext } from '../context/MovieContext'
+import { useLocation } from 'react-router-dom'
+
+export const AllMovie = () => {
+const {state,dispatch}=useContext(movieContext)
+const [page,setPage]=useState(1)
+const [sort,setSort]=useState("")
+const [isInfinity,setIsInfinity]=useState(false)
+const [pathName,SetPathName]=useState("")
+window.onscroll = () => {
+  if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    setIsInfinity(true)
+    setPage((pre)=>pre+1)
+    
+  }
+};
+const {pathname}=useLocation()
+useEffect(()=>{
+SetPathName(pathname)
+setIsInfinity(false)
+},[pathname])
+
+useEffect(()=>{
+  if(isInfinity){
+    setIsInfinity(false)
+  }
+},[pathName])
+
+  useEffect(()=>{
+    getAllMovies(dispatch,pathname=="/movie"?"movie":"tv",page,sort,isInfinity)
+  },[dispatch,page,sort,pathName])
+
+  return (
+    <Box>
+        <MovieGrid {...state.allMovie} />
+    </Box>
+  )
+}

@@ -7,8 +7,10 @@ import {
     CircularProgress,
     CircularProgressLabel,
   } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
   
-  export const MovieCard = ({ name, poster_path, release_date, vote_average,first_air_date }) => {
+  export const MovieCard = ({id, name, poster_path, release_date, vote_average,first_air_date }) => {
+    const navigate=useNavigate()
     return (
       <Box
         w="250px"
@@ -19,6 +21,8 @@ import {
         color="white"
         shadow="lg"
         position="relative"
+        _hover={{cursor:"pointer"}}
+        onClick={()=>navigate(`/movie/${id}-${first_air_date?"tv":"movie"}`)}
       >
         <Image src={poster_path} alt={`${name} poster`} minW={"100%"} h="300px"/>
   

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const MotionBox = motion(Box);
 
-const ToggleButtons = ({selected,setSelected}) => {
+const ToggleButtons = ({selected,setSelected,first,second}) => {
 
   const handleToggle = (value) => {
     setSelected(value);
@@ -22,7 +22,7 @@ const ToggleButtons = ({selected,setSelected}) => {
       <MotionBox
         position="absolute"
         top="0"
-        left={selected === 'movie' ? '0' : '50%'}
+        left={selected ? '0' : '50%'}
         h="100%"
         w="50%"
         bg={useColorModeValue('blue.500', 'blue.300')}
@@ -33,8 +33,8 @@ const ToggleButtons = ({selected,setSelected}) => {
       <Flex justify="space-between" align="center" position="relative" zIndex="1" h="100%">
         <Button
           flex="1"
-          onClick={() => handleToggle('movie')}
-          color={selected === 'movie' ? 'white' : 'gray.400'}
+          onClick={() => handleToggle(true)}
+          color={selected? 'white' : 'gray.400'}
           variant="unstyled"
           fontSize="sm" 
           h="100%"
@@ -43,12 +43,12 @@ const ToggleButtons = ({selected,setSelected}) => {
           justifyContent="center"
           alignItems="center" 
         >
-          Movie
+          {first}
         </Button>
         <Button
           flex="1"
-          onClick={() => handleToggle('tv')}
-          color={selected === 'tv' ? 'white' : 'gray.400'}
+          onClick={() => handleToggle(false)}
+          color={selected? 'white' : 'gray.400'}
           variant="unstyled"
           fontSize="sm" 
           h="100%"
@@ -57,7 +57,7 @@ const ToggleButtons = ({selected,setSelected}) => {
           justifyContent="center"
           alignItems="center" 
         >
-          TV
+          {second}
         </Button>
       </Flex>
     </Box>

@@ -57,3 +57,31 @@ export const getTrandingMovies = async (dispatch,span="day") => {
      console.log(error, "err");
    }
  };
+ export const getAllMovies = async (dispatch,type="movie",page=1,sort="",isInfinity) => {
+  try {
+     let url = `${baseUrl}/discover/${type}?language=en-US&page=${page}&sort_by=${sort}&api_key=${apiKey}`;
+    let { data } = await axios.get(url);
+    data = data.results.map(
+      (el) =>
+        (el = {
+          ...el,
+          backdrop_path: imageUrl + el.backdrop_path,
+          poster_path: imageUrl + el.poster_path,
+        })
+    );
+    return dispatch({ type: "ALLMOVIE", payload: {data,isInfinity} });
+  } catch (error) {
+    console.log(error, "err");
+  }
+};
+
+export const getSingleMovie=async(dispatch,type="tv",id="136166")=>{
+try {
+  let url=`${baseUrl}/${type}/${id}?api_key=${apiKey}`
+  let {data}=await axios.get(url)
+  data={...data,poster_path: imageUrl + data.poster_path}
+  return dispatch({type:"SINGLE_MOVIE",payload:data})
+} catch (error) {
+  console.log(error, "err");
+}
+}

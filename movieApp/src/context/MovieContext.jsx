@@ -6,6 +6,8 @@ const initalState={
     trending:{data:[],isLoading:false},
     popular:{data:[],isLoading:false},
     topRated:{data:[],isLoading:false},
+    allMovie:{data:[],isLoading:false},
+    singleMovie:{data:{},isLoading:false}
 }
 
 const movieReducer=(state,{type,payload})=>{
@@ -34,7 +36,22 @@ const movieReducer=(state,{type,payload})=>{
             ...state,
             topRated:{...state.topRated,data:payload,isLoading:false}
         }
+        case "ALLMOVIE":if(payload.isInfinity){
 
+            return{
+                ...state,
+                allMovie:{...state.topRated,data:[...state.allMovie.data,...payload.data],isLoading:false}
+            }
+        }else{
+            return {
+                ...state,
+                allMovie:{...state.allMovie,data:payload.data,isLoading:false}
+            }
+        }
+        case "SINGLE_MOVIE":return{
+            ...state,
+            singleMovie:{data:payload,isLoading:false}
+        }
         default:return state
     }
 

@@ -1,24 +1,17 @@
-import { useContext, useEffect, useState } from 'react'
 
-import { GetPopularMovies, getTopRatedMovies, getTrandingMovies } from '../actions/appAction'
-import { movieContext } from '../context/MovieContext'
-import { MovieCard }from '../components/MovieCard'
-import {MovieGrid }from '../components/MovieGrid'
-import { PopularMovies } from '../components/PopularMovies'
+import { Outlet, useLocation } from 'react-router-dom'
+import {NavBar} from '../components/NavBar'
+import { Box } from '@chakra-ui/react'
 
 function App() {
-  const {state,dispatch}=useContext(movieContext)
-  useEffect(()=>{
-    
-    getTrandingMovies(dispatch,"week")
-    getTopRatedMovies(dispatch)
-  },[])
-  console.log(state)
+  const {pathname}=useLocation()
+
+
   return (
-    <div>
-      <PopularMovies/>
-      
-    </div>
+    <Box bgGradient='linear(teal.100 0%, orange.100 25%, teal.300 100%)'>
+      <NavBar pathname={pathname}/>
+      <Outlet  />
+    </Box>
   )
 }
 
