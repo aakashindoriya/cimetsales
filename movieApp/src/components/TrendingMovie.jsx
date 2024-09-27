@@ -6,12 +6,8 @@ import { MovieCard } from './MovieCard';
 import { movieContext } from '../context/MovieContext';
 
 export const TrandingMovies = () => {
-  const { state, dispatch } = useContext(movieContext);
+  const { state } = useContext(movieContext);
   const [selected, setSelected] = useState(true);
-  useEffect(() => {
-    console.log(selected)
-    getTrandingMovies(dispatch, selected?"day":"week");
-  }, [dispatch,selected]);
 
   return (
     <Box w="100%" mt="2%" mb="2%">
@@ -36,7 +32,12 @@ export const TrandingMovies = () => {
           w="max-content" 
         >
           {
-            state.trending?.data?.map((ele) => (
+           selected&& state.homePageMovies.trendingDay.map((ele) => (
+              <MovieCard {...ele} key={ele.id} />
+            ))
+          }
+          {
+            !selected&& state.homePageMovies.trendingWeek.map((ele) => (
               <MovieCard {...ele} key={ele.id} />
             ))
           }

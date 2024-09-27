@@ -6,14 +6,9 @@ import { MovieCard } from './MovieCard';
 import { movieContext } from '../context/MovieContext';
 
 export const PopularMovies = () => {
-  const { state, dispatch } = useContext(movieContext);
+  const { state } = useContext(movieContext);
   const [selected, setSelected] = useState(true);
-  useEffect(() => {
-   
-    // GetPopularMovies(dispatch, selected?"movie":"tv");
-    GetAllHomePageMovies(dispatch)
-  }, [dispatch,selected]);
-  console.log(state)
+  
   return (
     <Box w="100%" mt="2%" mb="2%">
       <Flex m="auto" justifyContent="space-between" maxW="85%" mb="5" mt="5">
@@ -37,7 +32,12 @@ export const PopularMovies = () => {
           w="max-content" 
         >
           {
-            state.popular?.data?.map((ele) => (
+            selected&&state.homePageMovies.popularMovie?.map((ele) => (
+              <MovieCard {...ele} key={ele.id} />
+            ))
+          }
+          {
+            !selected&&state.homePageMovies.popularTv?.map((ele) => (
               <MovieCard {...ele} key={ele.id} />
             ))
           }

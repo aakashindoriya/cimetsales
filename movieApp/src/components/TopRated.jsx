@@ -1,16 +1,13 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import ToggleButtons from './ToggleButtons';
-import { getTopRatedMovies } from '../actions/appAction';
 import { MovieCard } from './MovieCard';
 import { movieContext } from '../context/MovieContext';
 
 export const TopRatedMovies = () => {
-  const { state, dispatch } = useContext(movieContext);
+  const { state} = useContext(movieContext);
   const [selected, setSelected] = useState(true);
-  useEffect(() => {
-    getTopRatedMovies(dispatch, selected?"movie":"tv");
-  }, [dispatch,selected]);
+  
 
   return (
     <Box w="100%" mt="2%" mb="2%" >
@@ -35,7 +32,11 @@ export const TopRatedMovies = () => {
           w="max-content" 
         >
           {
-            state.topRated?.data?.map((ele) => (
+           selected&& state.homePageMovies.topRatedMovie?.map((ele) => (
+              <MovieCard {...ele} key={ele.id} />
+            ))
+          }{
+            !selected&& state.homePageMovies.topRatedTv?.map((ele) => (
               <MovieCard {...ele} key={ele.id} />
             ))
           }
