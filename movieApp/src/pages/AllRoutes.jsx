@@ -3,6 +3,7 @@ import App from "./App";
 import { Home } from "./Home";
 import { AllMovie } from "./AllMovie";
 import { SingleMovie } from "./SingleMovie";
+import { SearchedMovies } from "./SearchedMovies";
 
 const route = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const route = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        
       },
       {
         path: "/movie",
@@ -31,6 +33,11 @@ const route = createBrowserRouter([
         path: "/tv",
         element: <AllMovie />,
       },
+      {
+        path:"/search",
+        element:<SearchedMovies />
+
+      }
     ],
   },
 ]);

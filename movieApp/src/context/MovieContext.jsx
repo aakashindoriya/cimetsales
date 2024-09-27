@@ -8,7 +8,16 @@ const initalState={
     topRated:{data:[],isLoading:false},
     allMovie:{data:[],isLoading:false},
     singleMovie:{data:{},isLoading:false},
-
+    searchedMovie:{data:[],isLoading:false},
+    homePageMovies:{
+        trendingDay:[],
+        trendingWeek:[],
+        topRatedMovie:[],
+        topRatedTv:[],
+        popularTv:[],
+        popularMovie:[],
+        isLoading:false
+    }
 }
 
 const movieReducer=(state,{type,payload})=>{
@@ -54,7 +63,20 @@ const movieReducer=(state,{type,payload})=>{
             singleMovie:{data:payload,isLoading:false}
         }
         case "SEARCHED_MOVIE":return{
-            
+            ...state,
+            searchedMovie:{...state.searchedMovie,data:payload,isLoading:false}
+        }
+        case "HOME_PAGE_MOVIES":return{
+            ...state,
+            homePageMovies:{
+                trendingDay:[...payload[2]],
+                trendingWeek:[...payload[3]],
+                topRatedMovie:[...payload[4]],
+                topRatedTv:[...payload[5]],
+                popularTv:[...payload[1]],
+                popularMovie:[...payload[0]],
+                isLoading:false
+            }
         }
         default:return state
     }

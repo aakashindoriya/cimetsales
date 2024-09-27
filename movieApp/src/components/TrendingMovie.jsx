@@ -14,7 +14,7 @@ export const TrandingMovies = () => {
   }, [dispatch,selected]);
 
   return (
-    <Box w="100%" mt="2%">
+    <Box w="100%" mt="2%" mb="2%">
       <Flex m="auto" justifyContent="space-between" maxW="85%" mb="5" mt="5">
         <Heading>Trending</Heading>
         <ToggleButtons selected={selected} setSelected={setSelected} first={"day"} second={"week"}/>

@@ -8,7 +8,7 @@ function App() {
 
 
   return (
-    <Box bgGradient='linear(teal.100 0%, orange.100 25%, teal.300 100%)'>
+    <Box minH="100vh" bgGradient=''>
       <NavBar pathname={pathname}/>
       <Outlet  />
     </Box>

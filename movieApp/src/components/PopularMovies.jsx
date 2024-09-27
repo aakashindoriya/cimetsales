@@ -1,7 +1,7 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import ToggleButtons from './ToggleButtons';
-import { GetPopularMovies } from '../actions/appAction';
+import { GetAllHomePageMovies, GetPopularMovies } from '../actions/appAction';
 import { MovieCard } from './MovieCard';
 import { movieContext } from '../context/MovieContext';
 
@@ -9,12 +9,13 @@ export const PopularMovies = () => {
   const { state, dispatch } = useContext(movieContext);
   const [selected, setSelected] = useState(true);
   useEffect(() => {
-    console.log(selected)
-    GetPopularMovies(dispatch, selected?"movie":"tv");
+   
+    // GetPopularMovies(dispatch, selected?"movie":"tv");
+    GetAllHomePageMovies(dispatch)
   }, [dispatch,selected]);
-
+  console.log(state)
   return (
-    <Box w="100%">
+    <Box w="100%" mt="2%" mb="2%">
       <Flex m="auto" justifyContent="space-between" maxW="85%" mb="5" mt="5">
         <Heading>What's Popular</Heading>
         <ToggleButtons selected={selected} setSelected={setSelected} first={"movie"} second={"tv"}/>

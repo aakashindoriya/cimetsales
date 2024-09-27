@@ -11,7 +11,7 @@ export const NavBar = ({pathname}) => {
       justifyContent="space-around"
       borderBottom={"2px solid teal"}
       h="70"
-      bg="teal.100"
+      bgColor={"whitesmoke"}
       position="sticky"
       top="0%"
       zIndex="20"

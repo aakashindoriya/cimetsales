@@ -9,22 +9,23 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleMovie } from "../actions/appAction";
 import { movieContext } from "../context/MovieContext";
+import { Video } from "../components/Video";
 
 export const SingleMovie = () => {
     const {state,dispatch}=useContext(movieContext)
-
+    const [play,setPlay]=useState(false)
     const {id}=useParams()
 useEffect(()=>{
     let [mid,type]=id.split("-")
 getSingleMovie(dispatch,type,mid)
 },[])
-  let {tagline,poster_path,title,overview,vote_average,status,release_date,original_name,last_air_date}=state.singleMovie.data
+  let {tagline,poster_path,title,overview,vote_average,status,release_date,original_name,last_air_date,videoKey}=state.singleMovie.data
   return (
-    <Box display="grid" w="100%" minH="80vh" >
+    <Box display="grid" w="100%" minH="80vh" position={"relative"} >
 
       <Flex w="80%" m="auto" gap="10"  justify={"center"} >
         <Box w="400px"
@@ -47,7 +48,8 @@ getSingleMovie(dispatch,type,mid)
             >
               <CircularProgressLabel>{vote_average}</CircularProgressLabel>
             </CircularProgress>
-            <Button colorScheme="teal" variant="outline">Watch Trailer</Button>
+            <Button colorScheme="teal" variant="outline" onClick={()=>setPlay(!play)}> Watch Trailer</Button>
+           { play&& <Video videoKey={videoKey} setPlay={setPlay} />}
           </Flex>
           <Text fontSize={"larger"}>Overview</Text>
           <Text fontSize={"large"}>
