@@ -3,11 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import ToggleButtons from './ToggleButtons';
 import { MovieCard } from './MovieCard';
 import { movieContext } from '../context/MovieContext';
+import { MovieCardSkeleton } from './MovieCardSkeleton';
 
 export const TopRatedMovies = () => {
   const { state} = useContext(movieContext);
   const [selected, setSelected] = useState(true);
-  
+  const isLoading = state.homePageMovies.isLoading;
+  const skeletonArray = Array(6).fill(0);
 
   return (
     <Box w="100%" mt="2%" mb="2%" >
@@ -31,6 +33,9 @@ export const TopRatedMovies = () => {
           gap="2"
           w="max-content" 
         >
+          {
+          isLoading&&skeletonArray.map((el)=><MovieCardSkeleton />)
+        }
           {
            selected&& state.homePageMovies.topRatedMovie?.map((ele) => (
               <MovieCard {...ele} key={ele.id} />

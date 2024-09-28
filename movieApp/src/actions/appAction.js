@@ -4,7 +4,6 @@ const baseUrl = import.meta.env.VITE_BASEURL;
 const apiKey = import.meta.env.VITE_API_KEY;
 let imageUrl = "https://image.tmdb.org/t/p/original";
 
-  
 export const getAllMovies = async (
   dispatch,
   type = "movie",
@@ -13,6 +12,9 @@ export const getAllMovies = async (
   isInfinity
 ) => {
   try {
+    // Dispatch loading action
+    dispatch({ type: "ALLMOVIE_LOADING" });
+
     let url = `${baseUrl}/discover/${type}?language=en-US&page=${page}&sort_by=${sort}&api_key=${apiKey}`;
     let { data } = await axios.get(url);
     data = data.results.map(
@@ -31,6 +33,9 @@ export const getAllMovies = async (
 
 export const getSingleMovie = async (dispatch, type = "tv", id = "136166") => {
   try {
+    // Dispatch loading action
+    dispatch({ type: "SINGLE_MOVIE_LOADING" });
+
     let url = `${baseUrl}/${type}/${id}?api_key=${apiKey}`;
     let { data } = await axios.get(url);
     data = { ...data, poster_path: imageUrl + data.poster_path };
@@ -46,6 +51,9 @@ export const getSingleMovie = async (dispatch, type = "tv", id = "136166") => {
 
 export const getSearchedMovies = async (dispatch, term = "john") => {
   try {
+    // Dispatch loading action
+    dispatch({ type: "SEARCHED_MOVIE_LOADING" });
+
     let url = `${baseUrl}/search/movie?query=${term}&page=1&api_key=${apiKey}`;
     let { data } = await axios.get(url);
     data = data.results.map(
@@ -64,6 +72,9 @@ export const getSearchedMovies = async (dispatch, term = "john") => {
 
 export const GetAllHomePageMovies = async (dispatch) => {
   try {
+    // Dispatch loading action
+    dispatch({ type: "HOME_PAGE_MOVIES_LOADING" });
+
     let urls = [
       `${baseUrl}/movie/popular?language=en-US&page=1&api_key=${apiKey}`,
       `${baseUrl}/tv/popular?language=en-US&page=1&api_key=${apiKey}`,

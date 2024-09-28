@@ -19,6 +19,29 @@ const initalState = {
 
 const movieReducer = (state, { type, payload }) => {
   switch (type) {
+    case "HOME_PAGE_MOVIES_LOADING":
+      return {
+        ...state,
+        homePageMovies: { ...state.homePageMovies, isLoading: true },
+      };
+    case "HOME_PAGE_MOVIES":
+      return {
+        ...state,
+        homePageMovies: {
+          trendingDay: [...payload[2]],
+          trendingWeek: [...payload[3]],
+          topRatedMovie: [...payload[4]],
+          topRatedTv: [...payload[5]],
+          popularTv: [...payload[1]],
+          popularMovie: [...payload[0]],
+          isLoading: false,
+        },
+      };
+    case "ALLMOVIE_LOADING":
+      return {
+        ...state,
+        allMovie: { ...state.allMovie, isLoading: true },
+      };
     case "ALLMOVIE":
       if (payload.isInfinity) {
         return {
@@ -35,10 +58,20 @@ const movieReducer = (state, { type, payload }) => {
           allMovie: { ...state.allMovie, data: payload.data, isLoading: false },
         };
       }
+    case "SINGLE_MOVIE_LOADING":
+      return {
+        ...state,
+        singleMovie: { ...state.singleMovie, isLoading: true },
+      };
     case "SINGLE_MOVIE":
       return {
         ...state,
         singleMovie: { data: payload, isLoading: false },
+      };
+    case "SEARCHED_MOVIE_LOADING":
+      return {
+        ...state,
+        searchedMovie: { ...state.searchedMovie, isLoading: true },
       };
     case "SEARCHED_MOVIE":
       return {
@@ -49,19 +82,7 @@ const movieReducer = (state, { type, payload }) => {
           isLoading: false,
         },
       };
-    case "HOME_PAGE_MOVIES":
-      return {
-        ...state,
-        homePageMovies: {
-          trendingDay: [...payload[2]],
-          trendingWeek: [...payload[3]],
-          topRatedMovie: [...payload[4]],
-          topRatedTv: [...payload[5]],
-          popularTv: [...payload[1]],
-          popularMovie: [...payload[0]],
-          isLoading: false,
-        },
-      };
+    
     default:
       return state;
   }
