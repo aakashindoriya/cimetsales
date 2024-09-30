@@ -40,7 +40,7 @@ export const getSingleMovie = async (dispatch, type = "tv", id = "136166") => {
     let { data } = await axios.get(url);
     data = { ...data, poster_path: imageUrl + data.poster_path };
     let results = await axios.get(
-      `${baseUrl}/movie/${data.id}/videos?api_key=${apiKey}`
+      `${baseUrl}/${type}/${data.id}/videos?api_key=${apiKey}`
     );
     data.videoKey = results.data.results[0]?.key;
     return dispatch({ type: "SINGLE_MOVIE", payload: data });

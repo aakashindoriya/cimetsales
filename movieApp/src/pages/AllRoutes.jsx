@@ -4,6 +4,9 @@ import { Home } from "./Home";
 import { AllMovie } from "./AllMovie";
 import { SingleMovie } from "./SingleMovie";
 import { SearchedMovies } from "./SearchedMovies";
+import { useContext } from "react";
+import { movieContext } from "../context/MovieContext";
+import { getAllMovies } from "../actions/appAction";
 
 const route = createBrowserRouter([
   {

@@ -1,9 +1,16 @@
 import { Box, Heading, Input, Button, Text, VStack } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { movieContext } from "../context/MovieContext";
+function getRandomMovie(arr){
+let randomIndex=Math.floor(Math.random()*(arr.length-1))
+  return arr[randomIndex]?.poster_path? `https://image.tmdb.org/t/p/w300${arr[randomIndex].poster_path}`: "https://c.tenor.com/FawYo00tBekAAAAC/tenor.gif"
+ 
+}
 const Welcome = () => {
   let [text,setText]=useState("")
+  const {state}=useContext(movieContext)
+
   let navigate=useNavigate()
   function handleSubmit(e){
     e.preventDefault()
@@ -11,9 +18,10 @@ const Welcome = () => {
     navigate(`/search?query=${encodedURL}`)
               setText("")
   }
+
   return (
     <Box
-      bgImage="url('https://image.tmdb.org/t/p/original/wWba3TaojhK7NdycRhoQpsG0FaH.jpg')"
+      bgImage={`url(${getRandomMovie(state.homePageMovies.popularMovie)})`}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"
