@@ -12,9 +12,9 @@ export const getAllMovies = async (
   isInfinity
 ) => {
   try {
-    // Dispatch loading action
+    
     dispatch({ type: "ALLMOVIE_LOADING" });
-
+    console.log("triggerd")
     let url = `${baseUrl}/discover/${type}?language=en-US&page=${page}&sort_by=${sort}&api_key=${apiKey}`;
     let { data } = await axios.get(url);
     data = data.results.map(

@@ -38,7 +38,7 @@ export const AllMovie = () => {
   }, [pathname]);
 
   useEffect(() => {
-    if (isInfinity) {
+    
       setLoading(true);
       getAllMovies(
         dispatch,
@@ -47,8 +47,9 @@ export const AllMovie = () => {
         sort,
         isInfinity
       ).finally(() => setLoading(false));
-    }
+    
   }, [dispatch, page, sort, pathName, isInfinity]);
+  console.log("i am here")
 
   return (
     <Box>
