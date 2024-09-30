@@ -20,7 +20,6 @@ export const Video = ({ videoKey ,setPlay}) => {
       pos={"absolute"}
       top={"10%"}
       left={"25%"}
-      border={"1px solid red"}
       width={"50%"}
       height={"50vh"}
       >
@@ -33,8 +32,7 @@ export const Video = ({ videoKey ,setPlay}) => {
           allow="autoplay; encrypted-media"
           allowfullscreen
           title="video"
-          width={"100%"}
-          height={"50vh"}
+          style={{width:"100%",height:"100%"}}
         />
       </Box>
     </Box>
