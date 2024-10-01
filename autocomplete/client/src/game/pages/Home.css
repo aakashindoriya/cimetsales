@@ -6,8 +6,8 @@
 
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
@@ -47,4 +47,24 @@
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
+  }
+
+  #container {
+    width: 60%;
+    margin: auto;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:20px
+  }
+  #score{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+    padding: 10px;
+  }
+
+  #score h2{
+    min-width: 10%;
   }
