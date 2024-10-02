@@ -1,0 +1,15 @@
+.box{
+    padding: 1rem;
+    border: 2px solid rgb(227, 225, 225);
+    border-radius: 1.5rem;
+}
+.box>input{
+    height: 2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+}
+.box button{
+    border: 2px solid rgb(187, 184, 184);
+    background-color: white;
+    border-radius: 1.5rem;
+}

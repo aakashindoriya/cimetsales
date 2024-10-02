@@ -1,0 +1,75 @@
+#createAvtar{
+    width: 100vw;
+    height: 100vh;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(122, 240, 240);
+    border: 2px solid red;
+   
+    
+}
+#createAvtar>div{
+    background-color: rgb(72, 202, 202);
+    width: 40%;
+    height: 40%;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#createAvtar>div>div{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap:2rem
+    
+}
+#close {
+	width: 4rem;
+	height: 4rem;
+	border: 2px solid gray;
+	border-radius: 50%;
+	text-align: center;
+	position: absolute;
+	top: -30px;
+	right: 48%;
+}
+
+#createAvtar>div>div>input{
+    
+    width: 90%;
+    border: 2px solid  gray;
+    text-align: center;
+    font-size: larger;
+    height: 2.5rem;
+    border-radius: 2rem;
+    
+}
+#createAvtar>div>div>div{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+#createAvtar>div>div button{
+    align-items: center;
+    width: 40%;
+    border: 2px solid gray;
+    text-align: center;
+    font-size: larger;
+    height: 2.5rem;
+    border-radius: 2rem;
+    padding: 0%;
+}
+#createAvtar>div>div>div button:first-child{
+  border-top-right-radius:0% ;
+  border-bottom-right-radius:0% ;
+}
+#createAvtar>div>div>div button:last-child{
+    border-top-left-radius:0% ;
+  border-bottom-left-radius:0% ;
+}

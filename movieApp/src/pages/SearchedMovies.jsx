@@ -3,18 +3,20 @@ import React, { useContext, useEffect } from 'react'
 import { movieContext } from '../context/MovieContext'
 import { getSearchedMovies } from '../actions/appAction'
 import { MovieGrid } from '../components/MovieGrid'
-import { useSearchParams } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 export const SearchedMovies = () => { 
-  const [params,setParams]=useSearchParams()
+  let check=useLocation()
+  check=check.search.split("=")[1]
+  
   const{state,dispatch}=useContext(movieContext)
   useEffect(()=>{
-   getSearchedMovies(dispatch,params.get("query"))
+   getSearchedMovies(dispatch,decodeURI(check))
   },[])
   console.log(state)
   
   return (
     <Box>
-        <Heading>Search results of : {params.get("query")}</Heading>
+        <Heading>Search results of : {decodeURI(check)}</Heading>
         <MovieGrid {...state.searchedMovie} />
     </Box>
   )

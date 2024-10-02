@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { getSingleMovie } from "../actions/appAction";
 import { movieContext } from "../context/MovieContext";
 import { Video } from "../components/Video";
@@ -19,6 +19,8 @@ export const SingleMovie = () => {
     const {state,dispatch}=useContext(movieContext)
     const [play,setPlay]=useState(false)
     const {id}=useParams()
+   
+    
 useEffect(()=>{
     let [mid,type]=id.split("-")
 getSingleMovie(dispatch,type,mid)

@@ -1,5 +1,5 @@
 import { Box, Heading, Input, Button, Text, VStack } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { movieContext } from "../context/MovieContext";
 function getRandomMovie(arr){
@@ -9,19 +9,27 @@ let randomIndex=Math.floor(Math.random()*(arr.length-1))
 }
 const Welcome = () => {
   let [text,setText]=useState("")
+  let [banner,setBanner]=useState("")
   const {state}=useContext(movieContext)
 
   let navigate=useNavigate()
   function handleSubmit(e){
     e.preventDefault()
     const encodedURL = encodeURI(text)
-    navigate(`/search?query=${encodedURL}`)
-              setText("")
+    // navigate(`/search?query=${encodedURL}`)
+    //           setText("")
+    navigate({
+      pathname:"/search",
+      search:"?query="+encodedURL
+    })
   }
+  useEffect(()=>{
+    setBanner(getRandomMovie(state.homePageMovies.popularMovie))
+  },[])
 
   return (
     <Box
-      bgImage={`url(${getRandomMovie(state.homePageMovies.popularMovie)})`}
+      bgImage={`url(${banner})`}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"

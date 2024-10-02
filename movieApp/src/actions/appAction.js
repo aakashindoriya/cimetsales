@@ -42,7 +42,8 @@ export const getSingleMovie = async (dispatch, type = "tv", id = "136166") => {
     let results = await axios.get(
       `${baseUrl}/${type}/${data.id}/videos?api_key=${apiKey}`
     );
-    data.videoKey = results.data.results[0]?.key;
+    console.log(results.data.results.find((el)=>el.type=="Trailer"),"in single")
+    data.videoKey = results.data.results.find((el)=>el.type=="Trailer")?.key;
     return dispatch({ type: "SINGLE_MOVIE", payload: data });
   } catch (error) {
     console.log(error, "err");
