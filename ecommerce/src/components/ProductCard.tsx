@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { bannerApiresponse, CartItem } from "../types/apiRespose";
-import { cartContext } from "../context/cartContext";
+import { cartContext } from "../context/CartContext";
 import QuantityButtons from "./QuantityButtons";
 
 const ProductCard = ({ image, title, price, id, description, category }: bannerApiresponse) => {

@@ -1,6 +1,7 @@
 
 import './App.css'
-import CartProvider from './context/cartContext'
+import CartProvider from './context/CartContext'
+import { ConversionContext } from './context/ConversionContext'
 import AllRoute from './pages/AllRoute'
 
 function App() {
@@ -8,9 +9,11 @@ function App() {
 
   return (
     <>
+    <ConversionContext>
     <CartProvider>
     <AllRoute />
     </CartProvider>
+    </ConversionContext>
     </>
   )
 }

@@ -1,6 +1,18 @@
+import { useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { conversionProvider } from '../context/ConversionContext';
+import { GetConverTed } from '../actions/loaderFunctions';
 
 const NavBar = () => {
+  const {fillRates} =useContext(conversionProvider)
+  async function setFillRates(){
+   let data=await GetConverTed("https://currency-conversion-and-exchange-rates.p.rapidapi.com/latest?from=USD")
+    data&&fillRates(data)
+  }
+
+  useEffect(()=>{
+   setFillRates()
+  },[])
   return (
     <header>
       <nav className="bg-blue-500 p-4 flex justify-between items-center sticky top-0">

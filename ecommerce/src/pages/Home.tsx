@@ -11,7 +11,7 @@ const Home = () => {
       <h2>popular products</h2>
       <div className="flex gap-2 p-2">
       {
-        data.map((el)=><ProductCard {...el} />)
+        data.map((el)=><ProductCard key={el.id} {...el} />)
       }
       </div>
     </section>

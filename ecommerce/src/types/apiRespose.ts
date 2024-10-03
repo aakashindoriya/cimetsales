@@ -18,3 +18,7 @@ export type BlogsApiResponse={
     title: string
     body: string
 }
+
+export type CoversionApiResponse={
+    [key:string]:number
+}
