@@ -23,13 +23,17 @@ export const ConversionContext = ({children}: { children: ReactNode }) => {
     const [currentCurrency,setCurrency]=useState<CoversionApiResponse>({})
     function fillRates(data:CoversionApiResponse){
         setRates(data)
+        console.log(data);
+        
     }
     function handleConversion(key:string){
         if(rates[key]){
-            setCurrency({key:rates[key]})
+            setCurrency({[key]:rates[key]})
+        }else{
+            setCurrency({})
         }
     }
-    console.log(rates,"from context")
+    
     
   return (
     <conversionProvider.Provider value={{rates,fillRates,handleConversion,currentCurrency}}>{children}</conversionProvider.Provider>

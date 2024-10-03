@@ -4,7 +4,7 @@ import { conversionProvider } from '../context/ConversionContext';
 import { GetConverTed } from '../actions/loaderFunctions';
 
 const NavBar = () => {
-  const {fillRates} =useContext(conversionProvider)
+  const {fillRates,handleConversion} =useContext(conversionProvider)
   async function setFillRates(){
    let data=await GetConverTed("https://currency-conversion-and-exchange-rates.p.rapidapi.com/latest?from=USD")
     data&&fillRates(data)
@@ -41,14 +41,13 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive ? "text-gray-200 font-bold" : "text-white hover:text-gray-200"
-              }
-            >
-              About
-            </NavLink>
+            <select aria-placeholder='select currency' onChange={(e)=>handleConversion(e.target.value)}>
+             <option value="all">USD</option>
+             <option value="AUD">AUD</option>
+             <option value="INR">INR</option>
+             <option value="PHP">PHP</option>
+             <option value="NZD">NZD</option>
+            </select>
           </li>
           <li>
             <NavLink
