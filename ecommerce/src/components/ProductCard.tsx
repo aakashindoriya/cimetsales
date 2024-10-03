@@ -1,29 +1,56 @@
 import { useContext, useEffect, useState } from "react";
 import { bannerApiresponse, CartItem } from "../types/apiRespose";
 import { cartContext } from "../context/cartContext";
+import QuantityButtons from "./QuantityButtons";
 
-const ProductCard = ({ image, title, price,id }: bannerApiresponse) => {
-  const context =useContext(cartContext)
-  let [isInCart,setIsInCart]=useState<CartItem|undefined>(undefined)
+const ProductCard = ({ image, title, price, id, description, category }: bannerApiresponse) => {
+  const context = useContext(cartContext);
+  const [isInCart, setIsInCart] = useState<CartItem | undefined>(undefined);
   const cart = context?.cart || [];
- 
-  useEffect(()=>{
-    let item=cart.find((el)=>el.product.id===id)
-    if(item){
-      setIsInCart(item)
-    }else{
-      setIsInCart(undefined)
+  const addToCart = context?.addToCart;
+  const handleQuantity=context?.handleQuantity
+  const removeFromCart=context?.removeFromCart
+
+  useEffect(() => {
+    const item = cart.find((el) => el.product.id === id);
+    setIsInCart(item || undefined);
+  }, [cart, id]);
+
+  const handleAddToCart = () => {
+    if (addToCart) {
+      addToCart({ image, title, price, id, description, category });
+    } else {
+      console.error("Add to cart function is not available.");
     }
-  },[cart])
+  };
+  const handleQuantityChange = (id:number,type:("inc"|"dec")):void => {
+    if (handleQuantity&&removeFromCart) {
+      if(type==="dec"&&isInCart?.quantity===1){
+        removeFromCart(id)
+      }else{
+
+        handleQuantity(id,type)
+      }
+    } else {
+      console.error("Add to cart function is not available.");
+    }
+  };
   return (
     <div className="max-w-xs h-64 rounded-lg shadow-lg overflow-hidden bg-white flex flex-col">
       <img className="w-full h-32 object-contain" src={image} alt={title} />
       <div className="flex-1 p-4 flex flex-col justify-between">
         <h2 className="text-lg font-semibold text-gray-800 truncate">{title}</h2>
         <p className="text-gray-600 mt-2">${price.toFixed(2)}</p>
-        <button className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
-          Add to Cart
-        </button>
+        {isInCart ? (
+          <QuantityButtons id={id} quantity={isInCart.quantity} handleQuantityChange={handleQuantityChange} />
+        ) : (
+          <button
+            className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
