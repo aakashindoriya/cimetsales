@@ -1,11 +1,21 @@
-import { NavLink, useLoaderData } from "react-router-dom"
+import { NavLink, useLoaderData, useSearchParams } from "react-router-dom"
 import { BlogsApiResponse } from "../types/apiRespose"
-import {  useState } from "react"
+import {  useEffect, useState } from "react"
 import Pagination from "../components/Pagination"
 
 const Blogs = () => {
-  let [startFrom,setStartFrom]=useState(0)
+  const [searchParams, setSearchParams] = useSearchParams();
+  let initialStartFrom = (parseInt(searchParams.get('page') || '0'))
+  if(initialStartFrom){
+    initialStartFrom=(initialStartFrom-1)*10
+  }
+
+  let [startFrom,setStartFrom]=useState(initialStartFrom)
   let data=useLoaderData() as BlogsApiResponse[]
+  useEffect(() => {
+    setSearchParams({ page: ((startFrom/10)+1).toString() });
+  }, [startFrom, setSearchParams]);
+
   return (
     <div className="w-full p-1">
       <div className="w-full flex justify-center">

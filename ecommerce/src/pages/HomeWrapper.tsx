@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import NavBar from '../components/NavBar.tsx'
 import { useEffect } from 'react'
 import { GetConverTed } from '../actions/loaderFunctions.ts'
+import Footer from '../components/Footer.tsx'
 
 const HomeWrapper = () => {
   useEffect(()=>{
@@ -11,7 +12,7 @@ const HomeWrapper = () => {
     <>
         <NavBar />
         <Outlet />
-        <h1>footer</h1>
+        <Footer />
     </>
   )
 }
