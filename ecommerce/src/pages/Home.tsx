@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { bannerApiresponse } from "../types/apiRespose";
-import { Carousel } from "../components/Carousel";
+import  Carousel  from "../components/Carousel";
 
 const Home = () => {
   const data = useLoaderData() as bannerApiresponse[];
