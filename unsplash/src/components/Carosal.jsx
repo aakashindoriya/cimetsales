@@ -4,34 +4,30 @@ const Carosal = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   let refrence = useRef(null);
 
-  // Start the interval again after the next or previous button is clicked
   function resetInterval() {
     refrence.current = setInterval(() => {
       setCurrentIndex((pre) => (pre === images.length - 1 ? 0 : pre + 1));
     }, 3000);
   }
 
-  // Move to the next image
   function handleNext() {
-    clearInterval(refrence.current); // Stop the interval before changing
+    clearInterval(refrence.current); 
     setCurrentIndex((pre) => (pre === images.length - 1 ? 0 : pre + 1));
-    resetInterval(); // Restart the interval
+    resetInterval(); 
   }
 
-  // Move to the previous image
   function handlePrevious() {
-    clearInterval(refrence.current); // Stop the interval before changing
+    clearInterval(refrence.current); 
     setCurrentIndex((pre) => (pre === 0 ? images.length - 1 : pre - 1));
-    resetInterval(); // Restart the interval
+    resetInterval(); 
   }
 
-  // Automatically change image every 3 seconds
   useEffect(() => {
     refrence.current = setInterval(() => {
       setCurrentIndex((pre) => (pre === images.length - 1 ? 0 : pre + 1));
     }, 3000);
 
-    return () => clearInterval(refrence.current); // Cleanup interval on unmount
+    return () => clearInterval(refrence.current); 
   }, [images]);
 
   return (
