@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 const Carosal = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   let refrence = useRef(null);
-
   function resetInterval() {
     refrence.current = setInterval(() => {
       setCurrentIndex((pre) => (pre === images.length - 1 ? 0 : pre + 1));
